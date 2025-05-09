@@ -90,8 +90,8 @@ class QuickTerminalController: BaseTerminalController {
         // Setup our configured appearance that we support.
         syncAppearance()
 
-        // Setup our initial size based on our configured position
-        position.setLoaded(window)
+        // Setup our initial size based on our configured position and size
+        position.setLoaded(window, with: derivedConfig.quickTerminalSize)
 
         // Setup our content
         window.contentView = NSHostingView(rootView: TerminalView(
@@ -180,7 +180,7 @@ class QuickTerminalController: BaseTerminalController {
         // We use the actual screen the window is on for this, since it should
         // be on the proper screen.
         guard let screen = window?.screen ?? NSScreen.main else { return frameSize }
-        return position.restrictFrameSize(frameSize, on: screen)
+        return position.restrictFrameSize(frameSize, on: screen, with: derivedConfig.quickTerminalSize)
     }
 
     // MARK: Base Controller Overrides
@@ -543,6 +543,7 @@ class QuickTerminalController: BaseTerminalController {
         let quickTerminalAnimationDuration: Double
         let quickTerminalAutoHide: Bool
         let quickTerminalSpaceBehavior: QuickTerminalSpaceBehavior
+        let quickTerminalSize: QuickTerminalSize
         let backgroundOpacity: Double
 
         init() {
@@ -550,6 +551,7 @@ class QuickTerminalController: BaseTerminalController {
             self.quickTerminalAnimationDuration = 0.2
             self.quickTerminalAutoHide = true
             self.quickTerminalSpaceBehavior = .move
+            self.quickTerminalSize = .default
             self.backgroundOpacity = 1.0
         }
 
@@ -558,6 +560,7 @@ class QuickTerminalController: BaseTerminalController {
             self.quickTerminalAnimationDuration = config.quickTerminalAnimationDuration
             self.quickTerminalAutoHide = config.quickTerminalAutoHide
             self.quickTerminalSpaceBehavior = config.quickTerminalSpaceBehavior
+            self.quickTerminalSize = config.quickTerminalSize
             self.backgroundOpacity = config.backgroundOpacity
         }
     }

@@ -5815,9 +5815,56 @@ pub const QuickTerminalSize = struct {
     primary: ?Size = null,
     secondary: ?Size = null,
 
+    /// ghostty_config_quick_terminal_size_s
+    pub const C = extern struct {
+        primary: Size.C,
+        secondary: Size.C,
+    };
+
     pub const Size = union(enum) {
         percentage: f32,
         pixels: u32,
+
+        /// ghostty_config_size_s
+        pub const C = extern struct {
+            percentage: f32,
+            pixels: u32,
+        };
+
+        pub fn cval(self: QuickTerminalSize) QuickTerminalSize.C {
+            var result: QuickTerminalSize.C = .{
+                .primary = .{ .percentage = 0, .pixels = 0 },
+                .secondary = .{ .percentage = 0, .pixels = 0 },
+            };
+
+            if (self.primary) |primary| {
+                switch (primary) {
+                    .percentage => |v| {
+                        result.primary.percentage = v;
+                        result.primary.pixels = 0;
+                    },
+                    .pixels => |v| {
+                        result.primary.percentage = 0;
+                        result.primary.pixels = v;
+                    },
+                }
+            }
+
+            if (self.secondary) |secondary| {
+                switch (secondary) {
+                    .percentage => |v| {
+                        result.secondary.percentage = v;
+                        result.secondary.pixels = 0;
+                    },
+                    .pixels => |v| {
+                        result.secondary.percentage = 0;
+                        result.secondary.pixels = v;
+                    },
+                }
+            }
+
+            return result;
+        }
 
         pub fn toPixels(self: Size, parent_dimensions: u32) u32 {
             switch (self) {

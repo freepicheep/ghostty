@@ -164,7 +164,7 @@ extension Ghostty {
             let key = "window-position-x"
             return ghostty_config_get(config, &v, key, UInt(key.count)) ? v : nil
         }
-        
+
         var windowPositionY: Int16? {
             guard let config = self.config else { return nil }
             var v: Int16 = 0
@@ -355,6 +355,42 @@ extension Ghostty {
                 green: Double(color.g) / 255,
                 blue: Double(color.b) / 255
             )
+        }
+
+        var quickTerminalSize: QuickTerminalSize {
+            guard let config = self.config else { return QuickTerminalSize() }
+            var size: ghostty_config_quick_terminal_size_s = .init()
+            let size_key = "quick-terminal-size"
+            let retrieved_size = ghostty_config_get(config, &size, size_key, UInt(size_key.count))
+            print("Size retrieved: ", retrieved_size)
+
+            let primary: QuickTerminalSize.Size
+            let secondary: QuickTerminalSize.Size
+            
+            print("Config primary percentage: \(size.primary.percentage)")
+            print("Config primary pixels: \(size.primary.pixels)")
+            print("Config secondary percentage: \(size.secondary.percentage)")
+            print("Config secondary pixels: \(size.secondary.pixels)")
+
+            if size.primary.percentage > 0 {
+                primary = .percentage(size.primary.percentage)
+            } else if size.primary.pixels > 0 {
+                primary = .pixels(size.primary.pixels)
+            } else {
+                primary = .unspecified
+            }
+
+            if size.secondary.percentage > 0 {
+                secondary = .percentage(size.secondary.percentage)
+            } else if size.secondary.pixels > 0 {
+                secondary = .pixels(size.secondary.pixels)
+            } else {
+                secondary = .unspecified
+            }
+            print("Primary: ", primary)
+            print("Secondary: ", secondary)
+
+            return QuickTerminalSize(primary: primary, secondary: secondary)
         }
 
         var backgroundOpacity: Double {

@@ -15,6 +15,8 @@
 		A514C8D62B54A16400493A16 /* Ghostty.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514C8D52B54A16400493A16 /* Ghostty.Config.swift */; };
 		A514C8D72B54A16400493A16 /* Ghostty.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514C8D52B54A16400493A16 /* Ghostty.Config.swift */; };
 		A514C8D82B54DC6800493A16 /* Ghostty.App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53D0C992B543F3B00305CE6 /* Ghostty.App.swift */; };
+		A517DFA42DCBB40C005AEE28 /* QuickTerminalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFA32DCBB40C005AEE28 /* QuickTerminalSize.swift */; };
+		A517DFA52DCBB40C005AEE28 /* QuickTerminalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFA32DCBB40C005AEE28 /* QuickTerminalSize.swift */; };
 		A51B78472AF4B58B00F3EDB9 /* TerminalWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B78462AF4B58B00F3EDB9 /* TerminalWindow.swift */; };
 		A51BFC1E2B2FB5CE00E92F16 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51BFC1D2B2FB5CE00E92F16 /* About.xib */; };
 		A51BFC202B2FB64F00E92F16 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BFC1F2B2FB64F00E92F16 /* AboutController.swift */; };
@@ -126,6 +128,7 @@
 		857F63802A5E64F200CA4815 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		9351BE8E2D22937F003B3499 /* nvim */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nvim; path = "../zig-out/share/nvim"; sourceTree = "<group>"; };
 		A514C8D52B54A16400493A16 /* Ghostty.Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ghostty.Config.swift; sourceTree = "<group>"; };
+		A517DFA32DCBB40C005AEE28 /* QuickTerminalSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTerminalSize.swift; sourceTree = "<group>"; };
 		A51B78462AF4B58B00F3EDB9 /* TerminalWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindow.swift; sourceTree = "<group>"; };
 		A51BFC1D2B2FB5CE00E92F16 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		A51BFC1F2B2FB64F00E92F16 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -503,6 +506,7 @@
 				A5CBD0632CA122E70017A1AE /* QuickTerminalPosition.swift */,
 				A52FFF562CA90481000C6A5B /* QuickTerminalScreen.swift */,
 				A5CBD05F2CA0C9080017A1AE /* QuickTerminalWindow.swift */,
+				A517DFA32DCBB40C005AEE28 /* QuickTerminalSize.swift */,
 			);
 			path = QuickTerminal;
 			sourceTree = "<group>";
@@ -706,6 +710,7 @@
 				A55B7BBC29B6FC330055DE60 /* SurfaceView.swift in Sources */,
 				A5333E1C2B5A1CE3008AEFF7 /* CrossKit.swift in Sources */,
 				A5874D992DAD751B00E83852 /* CGS.swift in Sources */,
+				A517DFA42DCBB40C005AEE28 /* QuickTerminalSize.swift in Sources */,
 				A59444F729A2ED5200725BBA /* SettingsView.swift in Sources */,
 				A56D58862ACDDB4100508D2C /* Ghostty.Shell.swift in Sources */,
 				A5985CD72C320C4500C57AD3 /* String+Extension.swift in Sources */,
@@ -749,6 +754,7 @@
 			files = (
 				A5CBD0592C9F37B10017A1AE /* Backport.swift in Sources */,
 				A53D0C942B53B43700305CE6 /* iOSApp.swift in Sources */,
+				A517DFA52DCBB40C005AEE28 /* QuickTerminalSize.swift in Sources */,
 				A514C8D72B54A16400493A16 /* Ghostty.Config.swift in Sources */,
 				A5333E232B5A219A008AEFF7 /* SurfaceView.swift in Sources */,
 				A5333E202B5A2111008AEFF7 /* SurfaceView_UIKit.swift in Sources */,

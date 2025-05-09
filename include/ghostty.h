@@ -362,6 +362,17 @@ typedef struct {
   ghostty_config_color_s colors[256];
 } ghostty_config_palette_s;
 
+typedef struct {
+    float percentage;
+    uint32_t pixels;
+} ghostty_config_size_s;
+
+// config.QuickTerminalSize
+typedef struct {
+    ghostty_config_size_s primary;
+    ghostty_config_size_s secondary;
+} ghostty_config_quick_terminal_size_s;
+
 // apprt.Target.Key
 typedef enum {
   GHOSTTY_TARGET_APP,

@@ -8,33 +8,14 @@ enum QuickTerminalPosition : String {
     case center
 
     /// Set the loaded state for a window.
-    func setLoaded(_ window: NSWindow) {
+    func setLoaded(_ window: NSWindow, with size: QuickTerminalSize = .default) {
         guard let screen = window.screen ?? NSScreen.main else { return }
-        switch (self) {
-        case .top, .bottom:
-            window.setFrame(.init(
-                origin: window.frame.origin,
-                size: .init(
-                    width: screen.frame.width,
-                    height: screen.frame.height / 4)
-            ), display: false)
-
-        case .left, .right:
-            window.setFrame(.init(
-                origin: window.frame.origin,
-                size: .init(
-                    width: screen.frame.width / 4,
-                    height: screen.frame.height)
-            ), display: false)
-
-        case .center:
-            window.setFrame(.init(
-                origin: window.frame.origin,
-                size: .init(
-                    width: screen.frame.width / 2,
-                    height: screen.frame.height / 3)
-            ), display: false)
-        }
+        let calculatedSize = size.calculateSize(for: self, on: screen)
+        
+        window.setFrame(.init(
+            origin: window.frame.origin,
+            size: calculatedSize
+        ), display: false)
     }
 
     /// Set the initial state for a window for animating out of this position.
@@ -62,18 +43,24 @@ enum QuickTerminalPosition : String {
     }
 
     /// Restrict the frame size during resizing.
-    func restrictFrameSize(_ size: NSSize, on screen: NSScreen) -> NSSize {
+    func restrictFrameSize(_ size: NSSize, on screen: NSScreen, with quickTerminalSize: QuickTerminalSize = .default) -> NSSize {
         var finalSize = size
+        
+        // Calculate the size based on the configured values
+        let calculatedSize = quickTerminalSize.calculateSize(for: self, on: screen)
+        
         switch (self) {
         case .top, .bottom:
             finalSize.width = screen.frame.width
+            finalSize.height = calculatedSize.height
 
         case .left, .right:
+            finalSize.width = calculatedSize.width
             finalSize.height = screen.visibleFrame.height
 
         case .center:
-            finalSize.width = screen.frame.width / 2
-            finalSize.height = screen.frame.height / 3
+            finalSize.width = calculatedSize.width
+            finalSize.height = calculatedSize.height
         }
 
         return finalSize
